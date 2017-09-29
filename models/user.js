@@ -6,96 +6,140 @@ mongoose.Promise = global.Promise; // Configure Mongoose Promises
 const Schema = mongoose.Schema; // Import Schema from Mongoose
 const bcrypt = require('bcrypt-nodejs'); // A native JS bcrypt library for NodeJS
 
-// Validate Function to check e-mail length
-let emailLengthChecker = (email) => {
-  // Check if e-mail exists
-  if (!email) {
+// Validate Function to check email Address length
+let emailAddressLengthChecker = (EmailAddress) => {
+  // Check if email Address exists
+  if (!EmailAddress) {
     return false; // Return error
   } else {
-    // Check the length of e-mail string
-    if (email.length < 5 || email.length > 30) {
+    // Check the length of email Address string
+    if (EmailAddress.length < 5 || EmailAddress.length > 30) {
       return false; // Return error if not within proper length
     } else {
-      return true; // Return as valid e-mail
+      return true; // Return as valid email Address
     }
   }
 };
 
-// Validate Function to check if valid e-mail format
-let validEmailChecker = (email) => {
-  // Check if e-mail exists
-  if (!email) {
+// Validate Function to check if valid email Address format
+let validEmailAddressChecker = (EmailAddress) => {
+  // Check if email Address exists
+  if (!EmailAddress) {
     return false; // Return error
   } else {
-    // Regular expression to test for a valid e-mail
+    // Regular expression to test for a valid email Address
     const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-    return regExp.test(email); // Return regular expression test results (true or false)
+    return regExp.test(EmailAddress); // Return regular expression test results (true or false)
   }
 };
 
-// Array of Email Validators
-const emailValidators = [
-  // First Email Validator
+// Array of email Address Validators
+const emailAddressValidators = [
+  // email Address Validator
   {
-    validator: emailLengthChecker,
-    message: 'E-mail must be at least 5 characters but no more than 30'
+    validator: emailAddressLengthChecker,
+    message: 'email Address must be at least 5 characters but no more than 30'
   },
   // Second Email Validator
   {
-    validator: validEmailChecker,
-    message: 'Must be a valid e-mail'
+    validator: validEmailAddressChecker,
+    message: 'Must be a valid email Address'
   }
 ];
 
-// Validate Function to check username length
-let usernameLengthChecker = (username) => {
-  // Check if username exists
-  if (!username) {
+
+// Validate Function to check FirstName length
+let firstNameLengthChecker = (FirstName) => {
+  // Check if FirstName exists
+  if (!FirstName) {
     return false; // Return error
   } else {
-    // Check length of username string
-    if (username.length < 3 || username.length > 15) {
+    // Check length of FirstName string
+    if (FirstName.length < 3 || FirstName.length > 50) {
       return false; // Return error if does not meet length requirement
     } else {
-      return true; // Return as valid username
+      return true; // Return as valid FirstName
     }
   }
 };
 
-// Validate Function to check if valid username format
-let validUsername = (username) => {
-  // Check if username exists
-  if (!username) {
+// Validate Function to check if valid FirstName format
+let validFirstName = (FirstName) => {
+  // Check if FirstName exists
+  if (!FirstName) {
     return false; // Return error
   } else {
-    // Regular expression to test if username format is valid
+    // Regular expression to test if FirstName format is valid
     const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
-    return regExp.test(username); // Return regular expression test result (true or false)
+    return regExp.test(FirstName); // Return regular expression test result (true or false)
   }
 };
 
-// Array of Username validators
-const usernameValidators = [
-  // First Username validator
+// Array of FirstName validators
+const firstNameValidators = [
+  // First LastName validator
   {
-    validator: usernameLengthChecker,
-    message: 'Username must be at least 3 characters but no more than 15'
+    validator: firstNameLengthChecker,
+    message: 'First Name must be at least 3 characters but no more than 50'
   },
-  // Second username validator
+  // Second FirstName validator
   {
-    validator: validUsername,
-    message: 'Username must not have any special characters'
+    validator: validFirstName,
+    message: 'First Name must not have any special characters'
+  }
+];
+
+
+
+// Validate Function to check LastName length
+let lastNameLengthChecker = (LastName) => {
+  // Check if LastName exists
+  if (!LastName) {
+    return false; // Return error
+  } else {
+    // Check length of LastName string
+    if (LastName.length < 3 || LastName.length > 50) {
+      return false; // Return error if does not meet length requirement
+    } else {
+      return true; // Return as valid LastName
+    }
+  }
+};
+
+// Validate Function to check if valid LastName format
+let validLastName = (LastName) => {
+  // Check if LastName exists
+  if (!LastName) {
+    return false; // Return error
+  } else {
+    // Regular expression to test if LastName format is valid
+    const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
+    return regExp.test(LastName); // Return regular expression test result (true or false)
+  }
+};
+
+// Array of LastName validators
+const lastNameValidators = [
+  // First LastName validator
+  {
+    validator: lastNameLengthChecker,
+    message: 'Last Name must be at least 3 characters but no more than 50'
+  },
+  // Second LastName validator
+  {
+    validator: validLastName,
+    message: 'Last Name must not have any special characters'
   }
 ];
 
 // Validate Function to check password length
-let passwordLengthChecker = (password) => {
+let passwordLengthChecker = (Password) => {
   // Check if password exists
-  if (!password) {
+  if (!Password) {
     return false; // Return error
   } else {
     // Check password length
-    if (password.length < 8 || password.length > 35) {
+    if (Password.length < 8 || Password.length > 35) {
       return false; // Return error if passord length requirement is not met
     } else {
       return true; // Return password as valid
@@ -104,14 +148,14 @@ let passwordLengthChecker = (password) => {
 };
 
 // Validate Function to check if valid password format
-let validPassword = (password) => {
+let validPassword = (Password) => {
   // Check if password exists
-  if (!password) {
+  if (!Password) {
     return false; // Return error
   } else {
     // Regular Expression to test if password is valid format
     const regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{8,35}$/);
-    return regExp.test(password); // Return regular expression test result (true or false)
+    return regExp.test(Password); // Return regular expression test result (true or false)
   }
 };
 
@@ -129,30 +173,38 @@ const passwordValidators = [
   }
 ];
 
+
+
+
+
 // User Model Definition
 const userSchema = new Schema({
-  email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
-  username: { type: String, required: true, unique: true, lowercase: true, validate: usernameValidators },
-  password: { type: String, required: true, validate: passwordValidators }
+  EmailAddress: { type: String, required: true, unique: true, lowercase: true, validate: emailAddressValidators },
+  FirstName: { type: String, required: true, validate: firstNameValidators },
+  LastName: { type: String, required: true, validate: lastNameValidators },
+  Password: { type: String, required: true, validate: passwordValidators },
+  BirthDate: { type: Date, required: true },
+  Gender: { type: String, required: true }
+
 });
 
 // Schema Middleware to Encrypt Password
 userSchema.pre('save', function(next) {
   // Ensure password is new or modified before applying encryption
-  if (!this.isModified('password'))
+  if (!this.isModified('Password'))
     return next();
 
   // Apply encryption
-  bcrypt.hash(this.password, null, null, (err, hash) => {
+  bcrypt.hash(this.Password, null, null, (err, hash) => {
     if (err) return next(err); // Ensure no errors
-    this.password = hash; // Apply encryption to password
+    this.Password = hash; // Apply encryption to password
     next(); // Exit middleware
   });
 });
 
 // Methods to compare password to encrypted password upon login
-userSchema.methods.comparePassword = function(password) {
-  return bcrypt.compareSync(password, this.password); // Return comparison of login password to password in database (true or false)
+userSchema.methods.comparePassword = function(Password) {
+  return bcrypt.compareSync(Password, this.Password); // Return comparison of login password to password in database (true or false)
 };
 
 // Export Module/Schema

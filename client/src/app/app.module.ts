@@ -9,7 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 import { BlogService } from './services/blog.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -24,6 +24,9 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { UploadcsvComponent } from './components/uploadcsv/uploadcsv.component';
 import { ReadcsvComponent } from './components/readcsv/readcsv.component';
 import { AgentService } from './services/agent.service';
+import { ChatComponent } from './components/chat/chat.component';
+import {ColorPreviewer} from "./color_previewer";
+import {CollapseOnClick} from "./collapse-on-click.directive";
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { AgentService } from './services/agent.service';
     PublicProfileComponent,
     FileSelectDirective,
     UploadcsvComponent,
-    ReadcsvComponent
+    ReadcsvComponent,
+    ChatComponent,
+    ColorPreviewer,
+    CollapseOnClick
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,7 @@ import { AgentService } from './services/agent.service';
     AppRoutingModule,
     FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, BlogService, AgentService],
+  providers: [UserService, AuthGuard, NotAuthGuard, BlogService, AgentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,19 +8,21 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProfileComponent implements OnInit {
 
-  username = '';
-  email = '';
+  LastName = '';
+  FirstName = '';
+  EmailAddress = '';
 
   constructor(
-    private authService: AuthService
+    private userService: UserService
   ) { }
 
 
   ngOnInit() {
     // Once component loads, get user's data to display on profile
-    this.authService.getProfile().subscribe(profile => {
-      this.username = profile.user.username; // Set username
-      this.email = profile.user.email; // Set e-mail
+    this.userService.getUsers().subscribe(profile => {
+      this.LastName = profile.user.LastName; // Set LastName
+      this.FirstName = profile.user.FirstName; // Set FirstName
+      this.EmailAddress = profile.user.EmailAddress; // Set EmailAddress
     });
   }
 

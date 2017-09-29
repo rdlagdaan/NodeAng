@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../../guards/auth.guard';
 
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private authGuard: AuthGuard
   ) {
@@ -28,21 +28,21 @@ export class LoginComponent implements OnInit {
   // Function to create login form
   createForm() {
     this.form = this.formBuilder.group({
-      username: ['', Validators.required], // Username field
-      password: ['', Validators.required] // Password field
+      EmailAddress: ['', Validators.required], // EmailAddress field
+      Password: ['', Validators.required] // Password field
     });
   }
 
   // Function to disable form
   disableForm() {
-    this.form.controls['username'].disable(); // Disable username field
-    this.form.controls['password'].disable(); // Disable password field
+    this.form.controls['EmailAddress'].disable(); // Disable EmailAddress field
+    this.form.controls['Password'].disable(); // Disable Password field
   }
 
   // Function to enable form
   enableForm() {
-    this.form.controls['username'].enable(); // Enable username field
-    this.form.controls['password'].enable(); // Enable password field
+    this.form.controls['EmailAddress'].enable(); // Enable EmailAddress field
+    this.form.controls['Password'].enable(); // Enable Password field
   }
 
   // Functiont to submit form and login user
@@ -51,12 +51,12 @@ export class LoginComponent implements OnInit {
     this.disableForm(); // Disable form while being process
     // Create user object from user's input
     const user = {
-      username: this.form.get('username').value, // Username input field
-      password: this.form.get('password').value // Password input field
+      EmailAddress: this.form.get('EmailAddress').value, // EmailAddress input field
+      Password: this.form.get('Password').value // Password input field
     }
 
     // Function to send login data to API
-    this.authService.login(user).subscribe(data => {
+    this.userService.login(user).subscribe(data => {
       // Check if response was a success or error
       if (!data.success) {
         this.messageClass = 'alert alert-danger'; // Set bootstrap error class
@@ -67,14 +67,14 @@ export class LoginComponent implements OnInit {
         this.messageClass = 'alert alert-success'; // Set bootstrap success class
         this.message = data.message; // Set success message
         // Function to store user's token in client local storage
-        this.authService.storeUserData(data.token, data.user);
+        this.userService.storeUserData(data.token, data.user);
         // After 2 seconds, redirect to dashboard page
         setTimeout(() => {
           // Check if user was redirected or logging in for first time
           if (this.previousUrl) {
             this.router.navigate([this.previousUrl]); // Redirect to page they were trying to view before
           } else {
-            this.router.navigate(['/dashboard']); // Navigate to dashboard view
+            this.router.navigate(['']); // Navigate to dashboard view
           }
         }, 2000);
       }

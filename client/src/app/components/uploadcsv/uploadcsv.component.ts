@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { AgentService } from '../../services/agent.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CanActivate, Router } from '@angular/router';
@@ -21,7 +21,7 @@ public uploader:FileUploader = new FileUploader({url:'http://localhost:8080/uplo
 
   constructor(    
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private userService: UserService,
     private agentService: AgentService,
     private router: Router
   ) 
@@ -101,7 +101,7 @@ public uploader:FileUploader = new FileUploader({url:'http://localhost:8080/uplo
   // Function to get all blogs from the database
   getCsv() {
     // Function to GET all blogs from database
-    this.authService.getCsv().subscribe(data => {
+    this.userService.getCsv().subscribe(data => {
       //this.csvPosts = data.csv; // Assign array to use in HTML
     });
  //console.log("hello");

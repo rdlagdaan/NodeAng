@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ColorPreviewer} from "./color_previewer";
+import {CollapseOnClick} from "./collapse-on-click.directive";
 
 @Component({
   selector: 'app-root',

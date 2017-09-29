@@ -15,17 +15,16 @@
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/dashboard">Dashboard</a></li>
-        <li><a *ngIf="authService.loggedIn()" routerLink="/uploadcsv">Upload</a></li>
-        <li><a *ngIf="authService.loggedIn()" routerLink="/readcsv">Agents List</a></li>
+        <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/dashboard">Dashboard</a></li>
+        <li><a *ngIf="userService.loggedIn()" routerLink="/uploadcsv">Upload</a></li>
+        <li><a *ngIf="userService.loggedIn()" routerLink="/readcsv">Agents List</a></li>
 
-        <li><a *ngIf="authService.loggedIn()" routerLink="/profile">Profile</a></li>
-        <li><a *ngIf="authService.loggedIn()" routerLink="/blog">Blog</a></li>
-        <li><a *ngIf="!authService.loggedIn()" routerLink="/login">Login</a></li>
-        <li><a *ngIf="authService.loggedIn()" href="#" (click)="onLogoutClick()">Logout</a></li>
-        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/register">Abby</a></li>
+        <li><a *ngIf="userService.loggedIn()" routerLink="/profile">Profile</a></li>
+        <li><a *ngIf="userService.loggedIn()" routerLink="/blog">Blog</a></li>
+        <li><a *ngIf="!userService.loggedIn()" routerLink="/login">Login</a></li>
+        <li><a *ngIf="userService.loggedIn()" href="#" (click)="onLogoutClick()">Logout</a></li>
 
-        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/register">Register</a></li>
+        <li *ngIf="!userService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/register">Register</a></li>
       </ul>
     </div>
     <!--/.nav-collapse -->

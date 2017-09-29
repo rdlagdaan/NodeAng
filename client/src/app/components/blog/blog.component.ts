@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { BlogService } from '../../services/blog.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class BlogComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private userService: UserService,
     private blogService: BlogService
   ) {
     this.createNewBlogForm(); // Create new blog form on start up
@@ -219,7 +219,7 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     // Get profile username on page load
-    this.authService.getProfile().subscribe(profile => {
+    this.userService.getUsers().subscribe(profile => {
       this.username = profile.user.username; // Used when creating new blog posts and comments
     });
 

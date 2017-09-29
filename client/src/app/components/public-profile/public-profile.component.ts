@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,28 +9,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PublicProfileComponent implements OnInit {
   currentUrl;
-  username;
-  email;
+  LastName;
+  FirstName;
+  EmailAddress;
   foundProfile = false;
   messageClass;
   message;
 
   constructor(
-    private authService: AuthService,
+    private userService: UserService,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params; // Get URL parameters on page load
     // Service to get the public profile data
-    this.authService.getPublicProfile(this.currentUrl.username).subscribe(data => {
+    this.userService.getUser(this.currentUrl.EmailAddress).subscribe(data => {
       // Check if user was found in database
       if (!data.success) {
         this.messageClass = 'alert alert-danger'; // Return bootstrap error class
         this.message = data.message; // Return error message
       } else {
-        this.username = data.user.username; // Save the username for use in HTML
-        this.email = data.user.email; // Save the email for use in HTML
+        this.LastName = data.user.LastName; // Save the LastName for use in HTML
+        this.FirstName = data.user.FirstName; // Save the FirstName for use in HTML
+        this.EmailAddress = data.user.EmailAddress; // Save the EmailAddress for use in HTML
         this.foundProfile = true; // Enable profile table
       }
     });

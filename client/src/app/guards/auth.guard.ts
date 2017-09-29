@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -8,7 +8,7 @@ export class AuthGuard implements CanActivate {
   redirectUrl;
 
   constructor(
-    private authService: AuthService,
+    private userService: UserService,
     private router: Router
   ) { }
 
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ) {
     // Check if user is logge din
-    if (this.authService.loggedIn()) {
+    if (this.userService.loggedIn()) {
       return true; // Return true: User is allowed to view route
     } else {
       this.redirectUrl = state.url; // Grab previous urul

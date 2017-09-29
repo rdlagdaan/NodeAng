@@ -1,0 +1,79 @@
+.btn-clear {
+    background: #DE363F;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.color-picker {
+
+
+}
+
+.color-title {
+    text-decoration: underline;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.color-sample {
+    height: 50px;
+    width:50px;
+    border: 1px solid gray;
+    display: inline-block;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+.color-sample-red {
+    background: #1976d2;
+
+}
+
+
+.color-sample-blue {
+    background: #b13138;
+}
+
+.color-sample-yellow {
+    background: yellow;
+}
+
+.color-sample-green {
+    background: green;
+}
+
+.color-sample-pink {
+    background: pink;
+}
+
+
+.color-sample-orange {
+    background: orange;
+}
+
+.color-sample-brown {
+    background:brown;
+}
+
+.color-sample-indigo {
+    background:indigo;
+}
+
+.color-sample-gold {
+    background: gold;
+}
+
+.color-sample-silver {
+    background: silver;
+}
+.color-previewer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    font-size: 21px;
+    text-transform: uppercase;
+
+}
